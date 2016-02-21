@@ -29,13 +29,13 @@ AppAsset::register($this);
 
     $menuItems = [
         ['label' => 'Главная', 'url' => ['/site/index']],
-        ['label' => 'О программе', 'url' => ['/site/about']],
     ];
 
     if(Yii::$app->user->isGuest):
         $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/reg']];
         $menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
     else:
+        $menuItems[] = ['label' => 'Соединения', 'url' => ['/connection/index']];
         $menuItems[] =
             [
                 'label' => 'Выход (' . Yii::$app->user->identity->username . ')',
