@@ -17,10 +17,15 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
+
     public $css = [
         'css/site.css',
+        'extensions/DataTables/datatables.min.css',
     ];
     public $js = [
+        'js/jquery-2.2.1.min.js',
+        'js/site_index.js',
+        'extensions/DataTables/datatables.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

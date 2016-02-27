@@ -23,6 +23,20 @@ $this->title = 'QueryTest';
                         }
                     ?>
                 </p>
+
+                <table id="query_table" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>query</th>
+                            <th>cost</th>
+                        </tr>
+                    </thead>
+
+                </table>
+
             </div>
         </div>
     </div>
+
+
