@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Connection */
 
-$this->title = 'Create Connection';
-$this->params['breadcrumbs'][] = ['label' => 'Connections', 'url' => ['index']];
+$this->title = Yii::t('app', 'Create Connection');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Connections'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="connection-create">

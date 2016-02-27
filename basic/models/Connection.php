@@ -13,6 +13,7 @@ use Yii;
  * @property string $host
  * @property string $db_name
  * @property integer $user_id
+ * @property integer $is_selected
  */
 class Connection extends \yii\db\ActiveRecord
 {
@@ -31,7 +32,7 @@ class Connection extends \yii\db\ActiveRecord
     {
         return [
             [['username', 'password', 'host', 'db_name', 'user_id'], 'required'],
-            [['user_id'], 'integer'],
+            [['user_id', 'is_selected'], 'integer'],
             [['username', 'password', 'host', 'db_name'], 'string', 'max' => 100]
         ];
     }
@@ -48,6 +49,7 @@ class Connection extends \yii\db\ActiveRecord
             'host' => 'Host',
             'db_name' => 'Db Name',
             'user_id' => 'User ID',
+            'is_selected' => 'Is Selected',
         ];
     }
 }

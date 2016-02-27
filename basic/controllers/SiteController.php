@@ -53,7 +53,11 @@ class SiteController extends Controller
     {
         if (!\Yii::$app->user->isGuest)
         {
-            return $this->render('index');
+            $currentConnection = ConnectionController::getSelectedConnection();
+
+            return $this->render('index',[
+                'curConnection' => $currentConnection,
+            ]);
         }
 
         return $this->render('landing');

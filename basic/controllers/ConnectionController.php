@@ -118,4 +118,13 @@ class ConnectionController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public static function getSelectedConnection()
+    {
+        $query = Connection::find();
+
+        return $query
+            ->where(array('is_selected' => 1))
+            ->one();
+    }
 }

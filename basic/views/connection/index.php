@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ConnectionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Connections';
+$this->title = Yii::t('app', 'Connections');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="connection-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Connection', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Connection'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'host',
             'db_name',
             // 'user_id',
+            // 'is_selected',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

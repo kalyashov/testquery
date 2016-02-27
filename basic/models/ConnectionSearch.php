@@ -18,7 +18,7 @@ class ConnectionSearch extends Connection
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'integer'],
+            [['id', 'user_id', 'is_selected'], 'integer'],
             [['username', 'password', 'host', 'db_name'], 'safe'],
         ];
     }
@@ -58,6 +58,7 @@ class ConnectionSearch extends Connection
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
+            'is_selected' => $this->is_selected,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
