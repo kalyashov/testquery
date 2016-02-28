@@ -10,6 +10,9 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\User;
+use app\components\managers\ConnectionManager;
+use app\components\managers\QueryManager;
+
 
 class SiteController extends Controller
 {
@@ -55,8 +58,14 @@ class SiteController extends Controller
         {
             $currentConnection = ConnectionController::getSelectedConnection();
 
+            $qm = QueryManager::getInstance(ConnectionManager::getConnection($currentConnection));
+            $query = 'Select * from t1';
+            $plan = $qm->getPlanTableFor($query);
+
+            var_dump($plan);
             return $this->render('index',[
                 'curConnection' => $currentConnection,
+                'plan' => $plan,
             ]);
         }
 
