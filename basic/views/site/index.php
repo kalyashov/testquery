@@ -58,15 +58,8 @@ use yii\bootstrap\Nav;
                 </div>
 
                 <?php
-                print "<table border='1'>\n";
-                while ($row = oci_fetch_array($plan, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                    print "<tr>\n";
-                    foreach ($row as $item) {
-                        print "    <td>" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "") . "</td>\n";
-                    }
-                    print "</tr>\n";
-                }
-                print "</table>\n";
+
+                    echo $plan;
 
                 ?>
 

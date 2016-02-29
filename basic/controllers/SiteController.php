@@ -60,7 +60,7 @@ class SiteController extends Controller
 
             $qm = QueryManager::getInstance(ConnectionManager::getConnection($currentConnection));
             $query = 'Select * from t1';
-            $plan = $qm->getPlanTableFor($query);
+            $plan = '';//$qm->getPlanTableFor($query);
 
             var_dump($plan);
             return $this->render('index',[
