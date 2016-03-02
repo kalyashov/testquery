@@ -10,6 +10,8 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -35,7 +37,6 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/reg']];
         $menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
     else:
-        $menuItems[] = ['label' => 'Настройки', 'url' => ['/connection/index']];
         $menuItems[] =
             [
                 'label' => 'Выход (' . Yii::$app->user->identity->username . ')',
@@ -48,7 +49,7 @@ AppAsset::register($this);
         'brandLabel' => 'Query Test',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'upper-menu navbar-inverse navbar-fixed-top',
         ],
     ]);
     echo Nav::widget([
@@ -58,23 +59,46 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="container" style="padding-left: 20px; padding-right: 40px; width: 100%">
+    <div class="container" style="width: 100%">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= $content ?>
+
+
+        <?php
+            if(!Yii::$app->user->isGuest)
+            {
+                echo '<div class="row">
+                        <div class="col-md-2">
+                            <div id="sidebar-wrapper">
+                                <ul class="sidebar-nav">
+                                    <li>'.
+                                        Html::a('Главная панель',array('site/index')) .
+                                    '</li>
+                                    <li>'.
+                                        Html::a('Получить план',array('site/queryplan')) .
+                                    '</li>
+                                    <li>'.
+                                        Html::a('Настройки',array('connection/index')) .
+                                    '</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-10">' .
+                            $content .
+                        '</div>';
+            }
+            else
+            {
+                echo $content;
+            }
+        ?>
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>
+

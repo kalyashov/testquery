@@ -58,19 +58,32 @@ class SiteController extends Controller
         {
             $currentConnection = ConnectionController::getSelectedConnection();
 
-            $qm = QueryManager::getInstance(ConnectionManager::getConnection($currentConnection));
-            $query = 'Select * from t1';
-            $plan = '';//$qm->getPlanTableFor($query);
-
-            var_dump($plan);
-            return $this->render('index',[
+            return $this->render('dashboard',[
                 'curConnection' => $currentConnection,
-                'plan' => $plan,
             ]);
         }
 
         return $this->render('landing');
     }
+
+    public function actionQueryplan()
+    {
+        if (!\Yii::$app->user->isGuest)
+        {
+            $currentConnection = ConnectionController::getSelectedConnection();
+
+            $qm = QueryManager::getInstance(ConnectionManager::getConnection($currentConnection));
+            $query = 'Select * from t2';
+            $plan = $qm->getPlanTableFor($query);
+
+            return $this->render('query_plan',[
+                'curConnection' => $currentConnection,
+                'plan' => $plan,
+            ]);
+        }
+    }
+
+
 
     public function actionReg()
     {

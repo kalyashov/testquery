@@ -20,15 +20,17 @@ class AppAsset extends AssetBundle
 
     public $css = [
         'css/site.css',
-        'extensions/DataTables/datatables.min.css',
-        //'css/bootstrap-3.3.6-dist/css/bootstrap.min.css',
-        //'css/bootstrap-combined.min.css',
+        'plugins/DataTables/datatables.min.css',
+        'plugins/bootstrap/css/bootstrap.min.css',
+        'css/sidebar.css',
+        'css/query_plan.css',
     ];
     public $js = [
         'js/jquery-2.2.1.min.js',
-        'js/site_index.js',
-        //'js/bootstrap-3.3.6-dist/css/bootstrap.min.js',
-        'extensions/DataTables/datatables.min.js',
+        'js/index.js',
+        'plugins/DataTables/datatables.min.js',
+        'plugins/bootstrap/js/bootstrap.min.js',
+        'js/query-plan.js',
 
     ];
     public $depends = [

@@ -55,28 +55,32 @@ class QueryManager
     {
         $this->clearPlan();
         $this->explainPlanFor($sql);
-        $plan = $this->getPlanTableField(PlanField::OPERATION, $this->sid);
 
-        return $this->parseQuery($plan);
-    }
+        $plan = array();
 
-    private function selectFromPlanTable()
-    {
+        $id = $this->getPlanTableField( new PlanField('ID'), $this->sid);
+        $operation = $this->getPlanTableField( new PlanField('OPERATION'), $this->sid);
+        $object_name = $this->getPlanTableField( new PlanField('OBJECT_NAME'), $this->sid);
+        $options = $this->getPlanTableField( new PlanField('OPTIONS'), $this->sid);
+        $cost = $this->getPlanTableField( new PlanField('COST'), $this->sid);
 
-    }
+        $index = 0;
+        foreach($id as $row)
+        {
+            array_push($plan,array($id[$index], $operation[$index], $object_name[$index], $options[$index], $cost[$index]));
+            $index++;
+        }
 
-    private function parsePlan($plan)
-    {
-
+        return $plan;
     }
 
     private function getPlanTableField(PlanField $field, $id)
     {
-        $QUERY = "select " . $field . "from plan_table where statement_id=" . $id;
-        return $this->executeQuery($QUERY);
+        $QUERY = "select " . $field . " from plan_table where statement_id='" . $id . "'";
+        return $this->parsePlan($this->executeQuery($QUERY));
     }
 
-    private function executeQuery($query)
+    public function executeQuery($query)
     {
         $stid = oci_parse($this->connection, $query);
 
@@ -97,7 +101,7 @@ class QueryManager
         return $stid;
     }
 
-    private function parseQuery($query)
+    public function parseQuery($query)
     {
         $strQuery = "";
         while ($row = oci_fetch_array($query, OCI_ASSOC+OCI_RETURN_NULLS))
@@ -111,15 +115,31 @@ class QueryManager
         return $strQuery;
     }
 
+    public function parsePlan($plan)
+    {
+        $planArray = array();
+        while ($row = oci_fetch_array($plan, OCI_ASSOC+OCI_RETURN_NULLS))
+        {
+            foreach ($row as $item)
+            {
+                $str= ($item !== null ? htmlentities($item, ENT_QUOTES) : " ");
+                array_push($planArray, $str);
+            }
+        }
+
+        return $planArray;
+    }
+
+
     private function clearPlan()
     {
-        $query = 'DELETE FROM PLAN_TABLE';
+        $query = "DELETE FROM PLAN_TABLE";
         $this->executeQuery($query);
     }
 
     private function explainPlanFor($sql)
     {
-        $query = 'EXPLAIN PLAN SET STATEMENT_ID = ' . $this->sid . 'FOR ' . $sql;
+        $query = "EXPLAIN PLAN SET STATEMENT_ID = '" . $this->sid . "' FOR " . $sql;
         $this->executeQuery($query);
     }
 

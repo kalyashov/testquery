@@ -7,8 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Connection */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Connections'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="connection-view">
 
