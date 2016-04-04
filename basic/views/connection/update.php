@@ -10,7 +10,7 @@ $this->title = Yii::t('app', 'Update {modelClass}: ', [
 ]) . ' ' . $model->id;
 
 ?>
-<div class="connection-update">
+<div class="panel connection-update-form">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

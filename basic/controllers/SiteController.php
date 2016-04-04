@@ -66,24 +66,19 @@ class SiteController extends Controller
         return $this->render('landing');
     }
 
-    public function actionQueryplan()
+    public function actionTuning()
     {
         if (!\Yii::$app->user->isGuest)
         {
             $currentConnection = ConnectionController::getSelectedConnection();
 
             $qm = QueryManager::getInstance(ConnectionManager::getConnection($currentConnection));
-            $query = 'Select * from t2';
-            $plan = $qm->getPlanTableFor($query);
 
-            return $this->render('query_plan',[
+            return $this->render('tuning',[
                 'curConnection' => $currentConnection,
-                'plan' => $plan,
             ]);
         }
     }
-
-
 
     public function actionReg()
     {

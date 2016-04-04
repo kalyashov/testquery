@@ -9,13 +9,13 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('app', 'Connections');
 ?>
-<div class="connection-index">
+<div class="panel connection-index-form">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Редактор подключений к БД</h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Connection'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Создать подключение'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

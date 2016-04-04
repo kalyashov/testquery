@@ -62,12 +62,14 @@ class QueryManager
         $operation = $this->getPlanTableField( new PlanField('OPERATION'), $this->sid);
         $object_name = $this->getPlanTableField( new PlanField('OBJECT_NAME'), $this->sid);
         $options = $this->getPlanTableField( new PlanField('OPTIONS'), $this->sid);
+        //$rows = $this->getPlanTableField( new PlanField('ROWS'), $this->sid);
+        $cardinality = $this->getPlanTableField( new PlanField('CARDINALITY'), $this->sid);
         $cost = $this->getPlanTableField( new PlanField('COST'), $this->sid);
 
         $index = 0;
         foreach($id as $row)
         {
-            array_push($plan,array($id[$index], $operation[$index], $object_name[$index], $options[$index], $cost[$index]));
+            array_push($plan,array($id[$index], $operation[$index], $object_name[$index], $options[$index], $cardinality[$index], $cost[$index]));
             $index++;
         }
 

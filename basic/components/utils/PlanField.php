@@ -15,5 +15,7 @@ class PlanField extends Enum
     const OPERATION = 'operation';
     const OBJECT_NAME = 'object_name';
     const OPTIONS = 'options';
+    const ROWS = 'rows';
+    const CARDINALITY = 'cardinality';
     const COST = 'cost';
 }

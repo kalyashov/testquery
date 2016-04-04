@@ -4,6 +4,8 @@
 
 $(document).ready(function()
 {
+    var problemQueriesTable = $('#query-table').DataTable();
+
     var planTable = $('#plan_table').DataTable({
         data: plan
     });
@@ -23,8 +25,16 @@ $(document).ready(function()
                     planTable = $('#plan_table').DataTable({
                         data: JSON.parse(data)
                     });
+
+                    planTable
+                        .rows(1)
+                        .nodes()
+                        .to$()      // Convert to a jQuery object
+                        .addClass( 'warning' );
                 }
             });
+
+
         }
     });
 } );

@@ -1,0 +1,15 @@
+.user-queries, .plan-info{
+    padding: 30px;
+}
+
+.user-queries {
+    padding-bottom: 20px;
+}
+
+.user-queries h3, .plan-info h3 {
+    padding-bottom: 20px;
+}
+
+.plan-input {
+    padding-bottom: 20px;
+}

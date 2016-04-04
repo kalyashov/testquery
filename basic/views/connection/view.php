@@ -9,7 +9,7 @@ use yii\widgets\DetailView;
 $this->title = $model->id;
 
 ?>
-<div class="connection-view">
+<div class="panel connection-view-form">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
