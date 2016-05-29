@@ -22,5 +22,18 @@ class QueryController extends Controller
             echo json_encode($plan);
         }
     }
+
+    public function actionLongrunningqueries()
+    {
+        if (!\Yii::$app->user->isGuest)
+        {
+            $currentConnection = ConnectionController::getSelectedConnection();
+
+            $qm = QueryManager::getInstance(ConnectionManager::getConnection($currentConnection));
+            $queris = $qm->getLongRunningQueries();
+
+            echo json_encode($queris);
+        }
+    }
 }
 

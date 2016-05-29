@@ -65,11 +65,11 @@ class QueryManager
         //$rows = $this->getPlanTableField( new PlanField('ROWS'), $this->sid);
         $cardinality = $this->getPlanTableField( new PlanField('CARDINALITY'), $this->sid);
         $cost = $this->getPlanTableField( new PlanField('COST'), $this->sid);
-
+        //$time = $this->getPlanTableField(new PlanField('TIME'), $this->sid);
         $index = 0;
         foreach($id as $row)
         {
-            array_push($plan,array($id[$index], $operation[$index], $object_name[$index], $options[$index], $cardinality[$index], $cost[$index]));
+            array_push($plan,array($id[$index], $operation[$index], $object_name[$index], $options[$index], $cardinality[$index], $cost[$index] ));
             $index++;
         }
 
@@ -80,6 +80,21 @@ class QueryManager
     {
         $QUERY = "select " . $field . " from plan_table where statement_id='" . $id . "'";
         return $this->parsePlan($this->executeQuery($QUERY));
+    }
+
+    public function getLongRunningQueries()
+    {
+        $QUERY = 'SELECT * FROM (SELECT sql_fulltext, sql_id, elapsed_time, child_number,
+                  disk_reads, executions, first_load_time, last_load_time,cpu_time FROM v$sql
+                  ORDER BY elapsed_time DESC) WHERE ROWNUM < 10';
+
+        $QUERY2 = 'SELECT * FROM (SELECT sql_id, elapsed_time, child_number,
+                  disk_reads, executions, first_load_time, last_load_time FROM v$sql
+                  ORDER BY elapsed_time DESC) WHERE ROWNUM < 10';
+
+        $result = $this->executeQuery($QUERY);
+
+        return $result;//$this->parseQuery($result);
     }
 
     public function executeQuery($query)

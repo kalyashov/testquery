@@ -80,6 +80,33 @@ class SiteController extends Controller
         }
     }
 
+    public function actionLong()
+    {
+        if (!\Yii::$app->user->isGuest)
+        {
+            $currentConnection = ConnectionController::getSelectedConnection();
+
+            $qm = QueryManager::getInstance(ConnectionManager::getConnection($currentConnection));
+            $queris = $qm->getLongRunningQueries();
+
+            $resArray['data'] = array();
+            while ($row = oci_fetch_array($queris, OCI_ASSOC+OCI_RETURN_NULLS))
+            {
+                array_push($resArray['data'], $row);
+            }
+
+            foreach($resArray['data'] as &$row)
+            {
+                $row['SQL_FULLTEXT'] = $row['SQL_FULLTEXT']->read($row['SQL_FULLTEXT']->size());
+            }
+            unset($row);
+
+            echo json_encode($resArray);
+        }
+    }
+
+
+
     public function actionReg()
     {
         $model = new RegForm();

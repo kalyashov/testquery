@@ -36,7 +36,7 @@ AppAsset::register($this);
                     {
                         echo '<!-- sidebar -->
                             <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
-                                <div class="user-info">
+                                <div class="hidden-xs user-info">
                                     <div class="avatar"></div>'.
                                     '<div class="username">'. Yii::$app->user->identity->username  .'</div>'.
                                 '</div>
@@ -45,17 +45,16 @@ AppAsset::register($this);
                                     <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
                                 </ul>
                                 <ul class="nav hidden-xs" id="lg-menu">
-                                    <li class="active">'.Html::a('Главная панель',array('site/index')).'</li>'.
-                                    '<li>'.Html::a('Тюнинг',array('site/tuning')).'</li>'.
-                                    '<li>'.Html::a('Настройки',array('connection/index')).'</li>'.
+                                    <li class="active">'.Html::a('<i class="fa fa-tachometer"></i> Главная панель',array('site/index')).'</li>'.
+                                    '<li>'.Html::a('<i class="fa fa-wrench"></i> Тюнинг',array('site/tuning')).'</li>'.
+                                    '<li>'.Html::a('<i class="fa fa-cog"></i>  Настройки',array('connection/index')).'</li>'.
                                 '</ul>
 
                                 <!-- tiny only nav-->
                                 <ul class="nav visible-xs" id="xs-menu">
-                                    <li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
-                                    <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
-                                    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
-                                    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-refresh"></i></a></li>
+                                    <li><a href="#stories" class="text-center"><i class="fa fa-tachometer"></i></a></li>
+                                    <li><a href="#" class="text-center"><i class="fa fa-wrench"></i></a></li>
+                                    <li><a href="#" class="text-center"><i class="fa fa-cog"></i></a></li>
                                 </ul>
                             </div>
                             <!-- /sidebar -->';
@@ -80,19 +79,16 @@ AppAsset::register($this);
                                     <a href="/" class="navbar-brand logo">Query Test</a>
                                 </div>
                                 <nav class="collapse navbar-collapse" role="navigation">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
+                                            <ul class="dropdown-menu">
 
-                                <ul class="nav navbar-nav navbar-right">
-                                  <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
-                                    <ul class="dropdown-menu">
-                                      <li><a href="">More</a></li>
-                                      <li><a href="">More</a></li>
-                                      <li><a href="">More</a></li>
-                                      <li><a href="">More</a></li>
-                                      <li><a href="">More</a></li>
+                                                <li><a href="">Профиль</a></li>
+                                                <li><a href="">Выйти</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
-                                  </li>
-                                </ul>
                                 </nav>
                             </div>
                             <!-- /top nav -->

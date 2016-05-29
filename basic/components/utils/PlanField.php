@@ -18,4 +18,5 @@ class PlanField extends Enum
     const ROWS = 'rows';
     const CARDINALITY = 'cardinality';
     const COST = 'cost';
+    const TIME = 'time';
 }

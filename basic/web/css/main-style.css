@@ -86,14 +86,17 @@ hr {
 }
 
 .navbar-blue li > a,.navbar-toggle  {
-    color:#1AB394;
+    color:#ccc;
 }
 
-.navbar-blue .dropdown-menu li a {color:#1AB394;}
-.navbar-blue .dropdown-menu li > a {padding-left:30px;}
+.navbar-blue .dropdown-menu li a {
+    color:#ccc;
+}
+
+
 
 .navbar-blue li>a:hover, .navbar-blue li>a:focus, .navbar-blue .open, .navbar-blue .open>a, .navbar-blue .open>a:hover, .navbar-blue .open>a:focus {
-    background-color:#1AB394;
+    background-color:#ccc;
     color:#fff;
 }
 
@@ -289,7 +292,7 @@ small.text-muted {
     }
 
     .navbar-blue {
-        background-color:#3B5999;
+        background-color:#F3F3F4;
         top:0;
         width:100%;
         position:relative;
