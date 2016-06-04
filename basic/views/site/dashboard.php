@@ -1,7 +1,7 @@
 <?php
 
     /* @var $this yii\web\View */
-    $this->title = 'Главная панель';
+    $this->title = 'Панель мониторинга';
 
    // $this->registerJsFile('/testquery/basic/web/js/dashboard.js');
 ?>
@@ -50,33 +50,16 @@
     <div class="row">
         <div class="col-md-6">
             <h3>Таблицы</h3>
-            <table class="table table-bordered table-responsive table-striped">
+            <table id="user-tables-table" class="table table-bordered table-responsive table-striped">
                 <thead>
                     <tr>
-                        <td>Имя</td>
-                        <td>Размер (мб)</td>
-                        <td>Создана</td>
-                        <td>Изменена</td>
-                        <td>Количество строк</td>
+                        <td>TABLE_NAME</td>
+                        <td>NUM_ROWS</td>
+                        <td>AVG_SPACE</td>
+                        <td>MAX_TRANS</td>
+                        <td>TABLE_LOCK</td>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>T1</td>
-                        <td>.0625</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>T2</td>
-                        <td>.1905</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
-                </tbody>
             </table>
         </div>
     </div>

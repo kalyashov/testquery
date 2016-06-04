@@ -4,6 +4,7 @@
 
 $(document).ready(function()
 {
+    // TODO: поменять URL
     var LONG_RUNNING_QUERYIES_URL = 'http://localhost/testquery/basic/web/index.php/site/long';
     var QUERY_PLAN = "http://localhost/testquery/basic/web/index.php/query/plantablejson?q=";
     /**

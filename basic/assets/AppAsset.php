@@ -32,7 +32,7 @@ class AppAsset extends AssetBundle
         'plugins/bootstrap/js/bootstrap.min.js',
         'js/tuning.js',
         'plugins/chartJs/Chart.min.js',
-        'js/dashboard.js',
+        'js/dashboard2.js',
         'plugins/backbone/backbone-min.js',
         'plugins/underscore/underscore-min.js'
 

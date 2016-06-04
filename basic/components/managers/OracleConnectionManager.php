@@ -13,7 +13,7 @@ namespace app\components\managers;
  * Class ConnectionManager
  * @package app\components\managers
  */
-class ConnectionManager
+class OracleConnectionManager
 {
     /**
      * @param $model

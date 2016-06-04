@@ -10,7 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\User;
-use app\components\managers\ConnectionManager;
+use app\components\managers\OracleConnectionManager;
 use app\components\managers\QueryManager;
 
 
@@ -72,7 +72,7 @@ class SiteController extends Controller
         {
             $currentConnection = ConnectionController::getSelectedConnection();
 
-            $qm = QueryManager::getInstance(ConnectionManager::getConnection($currentConnection));
+            $qm = QueryManager::getInstance(OracleConnectionManager::getConnection($currentConnection));
 
             return $this->render('tuning',[
                 'curConnection' => $currentConnection,
@@ -86,7 +86,7 @@ class SiteController extends Controller
         {
             $currentConnection = ConnectionController::getSelectedConnection();
 
-            $qm = QueryManager::getInstance(ConnectionManager::getConnection($currentConnection));
+            $qm = QueryManager::getInstance(OracleConnectionManager::getConnection($currentConnection));
             $queris = $qm->getLongRunningQueries();
 
             $resArray['data'] = array();

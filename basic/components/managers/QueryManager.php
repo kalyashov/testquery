@@ -9,6 +9,7 @@
 namespace app\components\managers;
 
 use app\components\utils\PlanField;
+use app\components\utils\UserTables;
 
 /**
  * Class QueryManager
@@ -95,6 +96,11 @@ class QueryManager
         $result = $this->executeQuery($QUERY);
 
         return $result;//$this->parseQuery($result);
+    }
+
+    public function getUserTables()
+    {
+        return $this->executeQuery(UserTables::QUERY_GET_USER_TABLES);
     }
 
     public function executeQuery($query)

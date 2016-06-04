@@ -38,3 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<style>
+    .site-login{
+        margin-left: 10px;
+    }
+</style>
