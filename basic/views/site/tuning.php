@@ -16,12 +16,12 @@
                 <th>SQL_ID</th>
                 <th>SQL_FULLTEXT</th>
                 <th>ELAPSED_TIME</th>
-                <th>CHILD_NUMBER</th>
+                <th>CPU TIME</th>
                 <th>DISK_READS</th>
                 <th>EXECUTIONS</th>
+                <th>CHILD_NUMBER</th>
                 <th>FIRST_LOAD_TIME</th>
                 <th>LAST_LOAD_TIME</th>
-                <th>CPU TIME</th>
             </tr>
             </thead>
         </table>
@@ -98,7 +98,7 @@
                                         <th>Object_name</th>
                                         <th>Options</th>
                                         <th>Cardinality</th>
-                                        <th class="cost">Cost</th>
+                                        <th>Cost</th>
                                     </tr>
                                 </thead>
                             </table>

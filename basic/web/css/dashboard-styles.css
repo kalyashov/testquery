@@ -1,0 +1,38 @@
+
+.diagram-container{
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.db-info, .connection-info
+{
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/*
+.db-size-diagram h3 {
+    padding-left: 30px;
+}
+
+.db-info-panel .db-info
+{
+    font-size: 16px;
+    padding: 80px 0 0 30px;
+}
+
+.db-info-panel .connection-info
+{
+    font-size: 16px;
+    padding: 80px 80px 0 30px;
+}
+
+.title {
+    margin-bottom: 10px;
+}*/
+
+.panel {
+    overflow-y: scroll;
+}

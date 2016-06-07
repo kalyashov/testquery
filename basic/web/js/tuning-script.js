@@ -65,12 +65,13 @@ $(document).ready(function()
             { "data": "SQL_ID" },
             { "data": "SQL_FULLTEXT" },
             { "data": "ELAPSED_TIME" },
-            { "data": "CHILD_NUMBER" },
+            { "data": "CPU_TIME"},
             { "data": "DISK_READS" },
             { "data": "EXECUTIONS" },
+            { "data": "CHILD_NUMBER" },
             { "data": "FIRST_LOAD_TIME" },
             { "data": "LAST_LOAD_TIME" },
-            { "data": "CPU_TIME"},
+
     ]});
 
 
@@ -86,13 +87,35 @@ $(document).ready(function()
         render: function(query)
         {
             var $el = this.$el;
+
             $.ajax({
                 url: QUERY_PLAN + query,
                 success: function (data)
                 {
+                    var $maxCostRow = null,
+                        counter = 0,
+                        maxCost = 0;
+
                     $el.DataTable({
-                        data: JSON.parse(data)
+                        data: JSON.parse(data),
+                        "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull )
+                        {
+                            var $cost = $(nRow).children().eq(5);
+
+                            console.debug(counter);
+                            if(counter && parseInt($cost.text()) > maxCost)
+                            {
+                                maxCost = $cost.text();
+                                $maxCostRow = $(nRow);
+
+                                console.debug($cost.text());
+                            }
+
+                            counter++;
+                        },
                     });
+
+                    $maxCostRow.addClass('danger');
                 },
                 error: function()
                 {

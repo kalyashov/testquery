@@ -14,9 +14,10 @@ return [
         'gii' => 'yii\gii\Module',
     ],
     'components' => [
-        'cache' => [
+        // TODO включить кэширование
+        /*'cache' => [
             'class' => 'yii\caching\FileCache',
-        ],
+        ],*/
         'log' => [
             'targets' => [
                 [

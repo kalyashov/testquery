@@ -63,14 +63,17 @@ class QueryManager
         $operation = $this->getPlanTableField( new PlanField('OPERATION'), $this->sid);
         $object_name = $this->getPlanTableField( new PlanField('OBJECT_NAME'), $this->sid);
         $options = $this->getPlanTableField( new PlanField('OPTIONS'), $this->sid);
-        //$rows = $this->getPlanTableField( new PlanField('ROWS'), $this->sid);
         $cardinality = $this->getPlanTableField( new PlanField('CARDINALITY'), $this->sid);
         $cost = $this->getPlanTableField( new PlanField('COST'), $this->sid);
+        //$cpu_cost = $this->getPlanTableField( new PlanField('CPU_COST'), $this->sid);
+        //$io_cost = $this->getPlanTableField( new PlanField('IO_COST'), $this->sid);
+        //$temp_space = $this->getPlanTableField( new PlanField('TEMP_SPACE'), $this->sid);
         //$time = $this->getPlanTableField(new PlanField('TIME'), $this->sid);
         $index = 0;
         foreach($id as $row)
         {
-            array_push($plan,array($id[$index], $operation[$index], $object_name[$index], $options[$index], $cardinality[$index], $cost[$index] ));
+            array_push($plan,array($id[$index], $operation[$index], $object_name[$index], $options[$index], $cardinality[$index], $cost[$index],
+                ));
             $index++;
         }
 
@@ -85,8 +88,8 @@ class QueryManager
 
     public function getLongRunningQueries()
     {
-        $QUERY = 'SELECT * FROM (SELECT sql_fulltext, sql_id, elapsed_time, child_number,
-                  disk_reads, executions, first_load_time, last_load_time,cpu_time FROM v$sql
+        $QUERY = 'SELECT * FROM (SELECT sql_fulltext, sql_id, elapsed_time, cpu_time,
+                  disk_reads, executions, child_number, first_load_time, last_load_time FROM v$sql
                   ORDER BY elapsed_time DESC) WHERE ROWNUM < 10';
 
         $QUERY2 = 'SELECT * FROM (SELECT sql_id, elapsed_time, child_number,

@@ -13,3 +13,7 @@
 .plan-input {
     padding-bottom: 20px;
 }
+
+.user-queries {
+    overflow-y: scroll;
+}

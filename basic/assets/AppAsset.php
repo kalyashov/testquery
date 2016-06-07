@@ -20,17 +20,16 @@ class AppAsset extends AssetBundle
 
     public $css = [
         'plugins/DataTables/datatables.min.css',
+        'plugins/bootstrap/css/bootstrap.min.css',
         'css/main-style.css',
-        'css/dashboard.css',
         'css/connection-editor.css',
-        'css/tuning.css',
+        'css/tuning-styles.css',
     ];
     public $js = [
         'js/jquery-2.2.1.min.js',
-        'js/index.js',
         'plugins/DataTables/datatables.min.js',
         'plugins/bootstrap/js/bootstrap.min.js',
-        'js/tuning.js',
+        'js/tuning-script.js',
         'plugins/chartJs/Chart.min.js',
         'js/dashboard2.js',
         'plugins/backbone/backbone-min.js',

@@ -4,13 +4,14 @@
     $this->title = 'Панель мониторинга';
 
    // $this->registerJsFile('/testquery/basic/web/js/dashboard.js');
+    $this->registerCssFile('/testquery/basic/web/css/dashboard-styles.css');
 ?>
 
 <div class="panel db-info-panel">
     <div class="row">
-        <div class=" hidden-xs hidden-sm col-md-1 col-lg-1"></div>
-        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 db-info">
-            <div class="title"><i class="fa fa-database"></i> Информация о БД</div>
+        <div class="hidden-xs hidden-sm col-md-1 col-lg-1"></div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 db-info text-center">
+            <h3 class="title"><i class="fa fa-database"></i> Информация о БД</h3>
             <div>Oracle Database 11g Express Edition Release 11.2.0.2.0</div>
             <div>PL/SQL Release 11.2.0.2.0</div>
             <div>CORE 11.2.0.2.0 Production</div>
@@ -18,14 +19,14 @@
             <div>64 bit</div>
 
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 db-size-diagram">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 db-size-diagram text-center">
             <h3>Размер БД (мб)</h3>
             <div class="diagram-container">
                 <canvas id="dbSize" width="150" height="150"></canvas>
             </div>
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 connection-info">
-            <div class="title"><i class="fa fa-compress"></i> Текущее подключение</div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 connection-info text-center">
+            <h3 class="title"><i class="fa fa-compress"></i> Текущее подключение</h3>
 
             <?php
                 if($curConnection)
@@ -48,9 +49,9 @@
 
 <div class="panel user-tables-panel">
     <div class="row">
-        <div class="col-md-6">
-            <h3>Таблицы</h3>
-            <table id="user-tables-table" class="table table-bordered table-responsive table-striped">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <h3>Таблицы пользователя  <?php if($curConnection) { echo $curConnection->username; } ?> </h3>
+            <table id="user-tables-table" class="table table-bordered table-responsive table-condensed table-striped">
                 <thead>
                     <tr>
                         <td>TABLE_NAME</td>
