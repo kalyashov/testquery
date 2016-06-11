@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\managers\QueryDataManager;
 use app\models\RegForm;
 use Yii;
 use yii\filters\AccessControl;
@@ -57,9 +58,16 @@ class SiteController extends Controller
         if (!\Yii::$app->user->isGuest)
         {
             $currentConnection = ConnectionController::getSelectedConnection();
+            $qm = QueryManager::getInstance(OracleConnectionManager::getConnection($currentConnection));
+            $dbInfo = $qm->getDataBaseInfo();
+            $dbSize = $qm->getDataBaseSize();
+            $cpuUsed = $qm->getCpuUsed();
 
             return $this->render('dashboard',[
                 'curConnection' => $currentConnection,
+                'dbInfo' => QueryDataManager::QueryDataToArray($dbInfo),
+                'dbSize' => QueryDataManager::QueryDataToArray($dbSize),
+                'cpuUsed' => QueryDataManager::QueryDataToArray($cpuUsed),
             ]);
         }
 

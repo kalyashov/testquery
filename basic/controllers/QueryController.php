@@ -60,5 +60,17 @@ class QueryController extends Controller
             echo QueryDataManager::QueryDataToJson($userTables);
         }
     }
+
+    public function actionDbinfo()
+    {
+        if (!\Yii::$app->user->isGuest)
+        {
+            $currentConnection = ConnectionController::getSelectedConnection();
+            $qm = QueryManager::getInstance(OracleConnectionManager::getConnection($currentConnection));
+            $dbInfo = $qm->getDataBaseInfo();
+
+            echo QueryDataManager::QueryDataToJson($dbInfo);
+        }
+    }
 }
 

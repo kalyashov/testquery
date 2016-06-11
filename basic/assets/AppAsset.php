@@ -21,7 +21,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'plugins/DataTables/datatables.min.css',
         'plugins/bootstrap/css/bootstrap.min.css',
-        'css/main-style.css',
+        'css/main-css.css',
         'css/connection-editor.css',
         'css/tuning-styles.css',
     ];
@@ -30,7 +30,7 @@ class AppAsset extends AssetBundle
         'plugins/DataTables/datatables.min.js',
         'plugins/bootstrap/js/bootstrap.min.js',
         'js/tuning-script.js',
-        'plugins/chartJs/Chart.min.js',
+        'plugins/chartJs/Chart.js',
         'js/dashboard2.js',
         'plugins/backbone/backbone-min.js',
         'plugins/underscore/underscore-min.js'

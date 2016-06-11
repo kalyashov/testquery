@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Connection */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
+$this->title = Yii::t('app', 'Изменить подключение: ', [
     'modelClass' => 'Connection',
 ]) . ' ' . $model->id;
 

@@ -3,8 +3,11 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: Roboto,sans-serif;
-    color:#555555;
+    font-family: 'open sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #676a6c;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: left;
 }
 
 .nav {
@@ -101,7 +104,7 @@ hr {
 }
 
 #main {
-    background-color:#e9eaed;
+    background-color:#F3F3F4;
     padding-left:0;
     padding-right:0;
 }
@@ -180,10 +183,28 @@ hr {
 }
 
 
-.panel {
+.section {
     background-color: white;
-    border-bottom: 1px solid #ccc;
+    border-top: 3px solid #E7EAEC;
+    padding: 0;
+    margin:20px;
 }
+
+.section-sm {
+    background-color: white;
+    border-top: 3px solid #E7EAEC;
+    padding: 0;
+    margin: 20px 15px;
+    max-width: 290px;
+}
+
+.section-title {
+
+    padding: 0;
+    width: 100%;
+    border-bottom: 1px solid #E7EAEC;
+}
+
 /* bootstrap overrides */
 
 .row{
@@ -278,6 +299,24 @@ h1,h2,h3 {
 
 small.text-muted {
     font-family:courier,courier-new,monospace;
+}
+
+h2 {
+    font-family:  'open sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 100;
+    color: #676A6C;
+    display: block;
+    line-height: 28px;
+    margin: 10px 0;
+}
+
+hr {
+    margin: 5px;
+}
+
+.text-right {
+    text-align: right;
 }
 
 /* adjust the contents on smaller devices */

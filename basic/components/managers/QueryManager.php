@@ -8,11 +8,13 @@
 
 namespace app\components\managers;
 
+use app\components\utils\DBInfo;
 use app\components\utils\PlanField;
 use app\components\utils\UserTables;
 
 /**
  * Class QueryManager
+ * Класс для осуществления запросов к БД
  * @package app\components\managers
  */
 class QueryManager
@@ -39,17 +41,39 @@ class QueryManager
     }
 
     /**
-     * get all user queries
-     * @return array
+     * Ф-я для получения информации о БД: версии и т.п.
+     * @return resource
      */
-    public function getAllQueries()
+    public function getDataBaseInfo()
     {
-
+        return $this->executeQuery(DBInfo::QUERY_GET_VERSION);
     }
 
-    public function createPlanTable()
+    /**
+     * Ф-я для получения размера БД
+     * @return resource
+     */
+    public function getDataBaseSize()
     {
+        return $this->executeQuery(DBInfo::QUERY_DB_SIZE);
+    }
 
+    /**
+     * Ф-я для загрузки CPU
+     * @return resource
+     */
+    public function getCpuUsed()
+    {
+        return $this->executeQuery(DBInfo::QUERY_CPU_USED);
+    }
+
+    /**
+     * Ф-я для получения таблиц пользователя
+     * @return resource
+     */
+    public function getUserTables()
+    {
+        return $this->executeQuery(UserTables::QUERY_GET_USER_TABLES);
     }
 
     public function getPlanTableFor($sql)
@@ -99,11 +123,6 @@ class QueryManager
         $result = $this->executeQuery($QUERY);
 
         return $result;//$this->parseQuery($result);
-    }
-
-    public function getUserTables()
-    {
-        return $this->executeQuery(UserTables::QUERY_GET_USER_TABLES);
     }
 
     public function executeQuery($query)

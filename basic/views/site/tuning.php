@@ -6,8 +6,16 @@
  * Time: 18:37
  */
 
+use yii\widgets\Breadcrumbs;
 
+$this->title = Yii::t('app', 'Тюнинг');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?= Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+]) ?>
+
     <div class="panel user-queries">
         <h3>Sql-запросы</h3>
         <table id="long-running-queries" class="table table-hover" cellspacing="0" width="100%">

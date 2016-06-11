@@ -1,14 +1,8 @@
 
 .diagram-container{
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     margin: 0 auto;
-    margin-bottom: 20px;
-}
-
-.db-info, .connection-info
-{
-    font-size: 16px;
     margin-bottom: 20px;
 }
 
@@ -32,7 +26,3 @@
 .title {
     margin-bottom: 10px;
 }*/
-
-.panel {
-    overflow-y: scroll;
-}

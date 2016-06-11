@@ -4,37 +4,41 @@
     $this->title = 'Панель мониторинга';
 
    // $this->registerJsFile('/testquery/basic/web/js/dashboard.js');
-    $this->registerCssFile('/testquery/basic/web/css/dashboard-styles.css');
+    $this->registerCssFile('/testquery/basic/web/css/dashboard-css.css');
 ?>
 
 <div class="panel db-info-panel">
     <div class="row">
-        <div class="hidden-xs hidden-sm col-md-1 col-lg-1"></div>
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 db-info text-center">
-            <h3 class="title"><i class="fa fa-database"></i> Информация о БД</h3>
-            <div>Oracle Database 11g Express Edition Release 11.2.0.2.0</div>
-            <div>PL/SQL Release 11.2.0.2.0</div>
-            <div>CORE 11.2.0.2.0 Production</div>
-            <div>TNS for 32-bit Windows: Version 11.2.0.2.0</div>
-            <div>64 bit</div>
-
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 db-info">
+            <h2> Информация о БД</h2>
+            <div><span class="label label-success">1</span> <?= $dbInfo["data"]["1"]["PRODUCT"]?></div><hr>
+            <div><span class="label label-success">2</span> <?= $dbInfo["data"]["1"]["VERSION"]?></div><hr>
+            <div><span class="label label-info">3</span> <?= $dbInfo["data"]["2"]["PRODUCT"] . $dbInfo["data"]["2"]["VERSION"] ?></div><hr>
+            <div><span class="label label-info">4</span> <?= $dbInfo["data"]["3"]["PRODUCT"] . $dbInfo["data"]["3"]["VERSION"] ?></div><hr>
+            <div><span class="label label-default">5</span> <?= $dbInfo["data"]["1"]["STATUS"]  ?></div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 db-size-diagram text-center">
-            <h3>Размер БД (мб)</h3>
+            <h2>Размер БД (мб)</h2>
             <div class="diagram-container">
-                <canvas id="dbSize" width="150" height="150"></canvas>
+                <canvas id="dbSize" width="140" height="140"></canvas>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 connection-info text-center">
-            <h3 class="title"><i class="fa fa-compress"></i> Текущее подключение</h3>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 db-size-diagram text-center">
+            <h2>Загрузка ЦП (%)</h2>
+            <div class="diagram-container">
+                <canvas id="cpuUsed" width="140" height="140"></canvas>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 connection-info">
+            <h2> Текущее подключение</h2>
 
             <?php
                 if($curConnection)
                 {
                     echo
-                        '<div>Пользователь: '. $curConnection->username . '</div> ' .
-                        '<div>Хост: '. $curConnection->host . '</div>' .
-                        '<div>БД: ' . $curConnection->db_name . '</div>';
+                        '<div><span class="label label-info">Пользователь:</span> '. '<span class="text-right">' . $curConnection->username . '</span></div><hr> ' .
+                        '<div><span class="label label-info">Хост:</span> '. '<span class="text-right">' . $curConnection->host . '</span></div> <hr>' .
+                        '<div><span class="label label-info">БД:</span> ' . '<span class="text-right">' . $curConnection->db_name . '</span></div> <hr> ';
                 }
             else
             {
@@ -50,7 +54,7 @@
 <div class="panel user-tables-panel">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
-            <h3>Таблицы пользователя  <?php if($curConnection) { echo $curConnection->username; } ?> </h3>
+            <h2>Таблицы пользователя  <?php if($curConnection) { echo $curConnection->username; } ?> </h2>
             <table id="user-tables-table" class="table table-bordered table-responsive table-condensed table-striped">
                 <thead>
                     <tr>
@@ -69,7 +73,7 @@
 <div class="panel user-views-panel">
     <div class="row">
         <div class="col-md-6">
-            <h3>Представления</h3>
+            <h2>Представления пользователя  <?php if($curConnection) { echo $curConnection->username; } ?> </h2>
             <table class="table table-bordered table-responsive table-striped">
                 <thead>
                 <tr>
@@ -133,26 +137,80 @@
 </div>
 
 <script>
+    var dbSize = JSON.parse('<?=json_encode($dbSize) ?>'),
+        freeSpace = parseFloat(dbSize.data[0].Free).toFixed(2),
+        usedSpace = parseFloat(dbSize.data[0].Used).toFixed(2);
 
-    var doughnutData = [
+    var cpuUsed = JSON.parse('<?=json_encode($cpuUsed) ?>'),
+        used = parseFloat(cpuUsed.data[0].CPU).toFixed(2),
+        other = 100 - used;
+
+    var dbSizeData = [
         {
-            value: 1534.7,
+            value: usedSpace,
             color:"#F7464A",
             highlight: "#FF5A5E",
             label: "Занято"
         },
         {
-            value: 122,
+            value: freeSpace,
             color: "#46BFBD",
             highlight: "#5AD3D1",
             label: "Свободно"
         }
     ];
 
+    var cpuUsedData = {
+        labels: ["",],
+        datasets: [
+            {
+                label: "Загрузка",
+                backgroundColor: "#8AC8BB",
+                borderColor: "#6DBCCE",
+                borderWidth: 1,
+                hoverBackgroundColor: "#6DBCCE",
+                hoverBorderColor: "#3897C8",
+                data: [used, 100],
+            }
+        ]
+    };
+
+    var dbSizeData = {
+        labels: [
+            "Свободно",
+            "Занято",
+        ],
+        datasets: [
+            {
+                data: [freeSpace, usedSpace],
+                backgroundColor: [
+                    "#36A2EB",
+                    "#FF6384",
+                ],
+                hoverBackgroundColor: [
+                    "#36A2EB",
+                    "#FF6384",
+                ]
+            }]
+    };
+
     window.onload = function(){
         var ctx = document.getElementById("dbSize").getContext("2d");
-        window.myDoughnut = new Chart(ctx).Pie(doughnutData, {responsive : true});
+        var dbSizeDiagram = new Chart(ctx,{
+            type: 'pie',
+            data: dbSizeData,
+        });
+
+        var ctx2 = document.getElementById("cpuUsed").getContext("2d");
+
+        var cpuUsedDiagram = new Chart(ctx2, {
+            type: 'bar',
+            data: cpuUsedData,
+        });
+
     };
+
+
 </script>
 
 
