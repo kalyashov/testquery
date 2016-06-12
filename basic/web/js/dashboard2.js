@@ -4,7 +4,11 @@
 $(document).ready(function()
 {
     //TODO: поменять URL
-    var USER_TABLES_URL = "http://localhost/testquery/basic/web/index.php/query/usertables";
+    var USER_TABLES_URL = "http://localhost/testquery/basic/web/index.php/query/usertables",
+        USER_VIEWS_URL = "http://localhost/testquery/basic/web/index.php/query/userviews",
+        USER_PROCEDURES_URL = "http://localhost/testquery/basic/web/index.php/query/userprocedures",
+        USER_TRIGGERS_URL = "http://localhost/testquery/basic/web/index.php/query/usertriggers";
+
 
     /**
      *  Основа для таблиц
@@ -46,5 +50,31 @@ $(document).ready(function()
             { "data": "AVG_SPACE" },
             { "data": "MAX_TRANS" },
             { "data": "TABLE_LOCK" },
+        ]});
+
+    var userViews = new SimpleDataTable({ el: '#user-views-table', url: USER_VIEWS_URL,
+        columns: [
+            { "data": "VIEW_NAME" },
+            { "data": "TEXT" },
+            { "data": "TEXT_LENGTH" },
+            { "data": "VIEW_TYPE" },
+        ]});
+
+    var userProcedures = new SimpleDataTable({ el: '#user-procedures-table', url: USER_PROCEDURES_URL,
+        columns: [
+            { "data": "OBJECT_NAME" },
+            { "data": "PROCEDURE_NAME" },
+        ]});
+
+    var userTriggers = new SimpleDataTable({ el: '#user-triggers-table', url: USER_TRIGGERS_URL,
+        columns: [
+            { "data": "TRIGGER_NAME" },
+            { "data": "TRIGGER_TYPE" },
+            { "data": "TRIGGERING_EVENT" },
+            { "data": "TABLE_NAME" },
+            { "data": "COLUMN_NAME" },
+            { "data": "TRIGGER_BODY" },
+            { "data": "ACTION_TYPE" },
+            { "data": "STATUS" },
         ]});
 });

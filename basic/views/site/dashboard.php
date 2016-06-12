@@ -74,63 +74,53 @@
     <div class="row">
         <div class="col-md-6">
             <h2>Представления пользователя  <?php if($curConnection) { echo $curConnection->username; } ?> </h2>
-            <table class="table table-bordered table-responsive table-striped">
+            <table id="user-views-table" class="table table-bordered table-responsive table-striped">
                 <thead>
                 <tr>
-                    <td>Имя</td>
-                    <td>Размер (мб)</td>
+                    <td>VIEW_NAME</td>
+                    <td>TEXT</td>
+                    <td>TEXT_LENGTH</td>
+                    <td>VIEW_TYPE</td>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
             </table>
         </div>
     </div>
 </div>
 
-<div class="panel user-views-panel">
+<div class="panel user-procedures-panel">
     <div class="row">
         <div class="col-md-6">
-            <h3>Функции</h3>
-            <table class="table table-bordered table-responsive table-striped">
+            <h2>Процедуры пользователя  <?php if($curConnection) { echo $curConnection->username; } ?> </h2>
+            <table id="user-procedures-table" class="table table-bordered table-responsive table-striped">
                 <thead>
                 <tr>
-                    <td>Имя</td>
-                    <td>Размер (мб)</td>
+                    <td>OBJECT_NAME</td>
+                    <td>PROCEDURE_NAME</td>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
             </table>
         </div>
     </div>
 </div>
 
-<div class="panel user-views-panel">
+<div class="panel user-triggers-panel">
     <div class="row">
         <div class="col-md-6">
-            <h3>Процедуры</h3>
-            <table class="table table-bordered table-responsive table-striped">
+            <h2>Триггеры пользователя  <?php if($curConnection) { echo $curConnection->username; } ?> </h2>
+            <table id="user-triggers-table" class="table table-bordered table-responsive table-striped">
                 <thead>
-                <tr>
-                    <td>Имя</td>
-                    <td>Размер (мб)</td>
-                </tr>
+                    <tr>
+                        <td>TRIGGER_NAME</td>
+                        <td>TRIGGER_TYPE</td>
+                        <td>TRIGGERING_EVENT</td>
+                        <td>TABLE_NAME</td>
+                        <td>COLUMN_NAME</td>
+                        <td>TRIGGER_BODY</td>
+                        <td>ACTION_TYPE</td>
+                        <td>STATUS</td>
+                    </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
             </table>
         </div>
     </div>

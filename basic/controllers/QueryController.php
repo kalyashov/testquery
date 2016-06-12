@@ -23,6 +23,10 @@ class QueryController extends Controller
         ];
     }
 
+    // TODO implement before action
+    // to get instance of QueryManager
+    // and check users rigths
+
     public function actionPlantablejson($q)
     {
         if (!\Yii::$app->user->isGuest)
@@ -60,6 +64,43 @@ class QueryController extends Controller
             echo QueryDataManager::QueryDataToJson($userTables);
         }
     }
+
+    public function actionUserprocedures()
+    {
+        if (!\Yii::$app->user->isGuest)
+        {
+            $currentConnection = ConnectionController::getSelectedConnection();
+            $qm = QueryManager::getInstance(OracleConnectionManager::getConnection($currentConnection));
+            $userTables = $qm->getUserProcedures();
+
+            echo QueryDataManager::QueryDataToJson($userTables);
+        }
+    }
+
+    public function actionUserviews()
+    {
+        if (!\Yii::$app->user->isGuest)
+        {
+            $currentConnection = ConnectionController::getSelectedConnection();
+            $qm = QueryManager::getInstance(OracleConnectionManager::getConnection($currentConnection));
+            $userTables = $qm->getUserViews();
+
+            echo QueryDataManager::QueryDataToJson($userTables);
+        }
+    }
+
+    public function actionUsertriggers()
+    {
+        if (!\Yii::$app->user->isGuest)
+        {
+            $currentConnection = ConnectionController::getSelectedConnection();
+            $qm = QueryManager::getInstance(OracleConnectionManager::getConnection($currentConnection));
+            $userTables = $qm->getUserTriggers();
+
+            echo QueryDataManager::QueryDataToJson($userTables);
+        }
+    }
+
 
     public function actionDbinfo()
     {

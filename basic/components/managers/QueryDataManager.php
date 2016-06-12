@@ -17,6 +17,7 @@ namespace app\components\managers;
 class QueryDataManager
 {
     /**
+     * Преобразует данные запроса в ассоциативный массив
      * @param $query - данные запроса
      * @return array - массив
      */
@@ -33,13 +34,51 @@ class QueryDataManager
     }
 
     /**
+     * Преобразует данные запроса в JSON
      * @param $queryData - данные запроса
-     * @return JSON
+     * @return mixed - JSON
      */
     public static function QueryDataToJson($queryData)
     {
-     return json_encode(self::QueryDataToArray($queryData));
+        return json_encode(self::QueryDataToArray($queryData));
     }
 
+    /**
+     * Преобразует данные, в которых имеются поля типа CLOB или BLOB, в массив
+     * @param $queryData - данные запроса
+     * @param $lobFields - массив с названиями полей с типом CLOB, BLOB
+     * @return mixed
+     */
+    public static function QueryDataWithLobToArray($queryData, $lobFields)
+    {
+        $resultArray['data'] = array();
 
+        while ($row = oci_fetch_array($queryData, OCI_ASSOC+OCI_RETURN_NULLS))
+        {
+            array_push($resultArray['data'], $row);
+        }
+
+        foreach($lobFields as $field)
+        {
+            foreach($resultArray['data'] as &$row)
+            {
+                $row[$field] = $row[$field]->read($row[$field]->size());
+            }
+        }
+
+        unset($row);
+
+        return $resultArray;
+    }
+
+    /**
+     * Преобразует данные, в которых имеются поля типа CLOB или BLOB, в JSON
+     * @param $queryData - данные запроса
+     * @param $lobFields - массив с названиями полей с типом CLOB, BLOB
+     * @return mixed - JSON
+     */
+    public static function QueryDataWithLobToJson($queryData, $lobFields)
+    {
+        return json_encode(self::QueryDataWithLobToArray($queryData, $lobFields));
+    }
 }

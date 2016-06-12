@@ -10,6 +10,8 @@ namespace app\components\managers;
 
 use app\components\utils\DBInfo;
 use app\components\utils\PlanField;
+use app\components\utils\SqlStatistic;
+use app\components\utils\UserObjects;
 use app\components\utils\UserTables;
 
 /**
@@ -73,7 +75,52 @@ class QueryManager
      */
     public function getUserTables()
     {
-        return $this->executeQuery(UserTables::QUERY_GET_USER_TABLES);
+        return $this->executeQuery(UserObjects::QUERY_GET_USER_TABLES);
+    }
+
+    public function getUserProcedures()
+    {
+        return $this->executeQuery(UserObjects::QUERY_GET_USER_PROCEDURES);
+    }
+
+    public function getUserTriggers()
+    {
+        return $this->executeQuery(UserObjects::QUERY_GET_USER_TRIGGERS);
+    }
+
+    public function getUserViews()
+    {
+        return $this->executeQuery(UserObjects::QUERY_GET_USER_VIEWS);
+    }
+
+    public function getQueriesByElapsedTime()
+    {
+        return $this->executeQuery(SqlStatistic::QUERIES_BY_ELAPSED_TIME);
+    }
+
+    public function getQueriesByCpuTime()
+    {
+        return $this->executeQuery(SqlStatistic::QUERIES_BY_CPU_TIME);
+    }
+
+    public function getQueriesByBufferGets()
+    {
+        return $this->executeQuery(SqlStatistic::QUERIES_BY_BUFFER_GETS);
+    }
+
+    public function getQueriesByParseCalls()
+    {
+        return $this->executeQuery(SqlStatistic::QURIES_BY_PARSE_CALLS);
+    }
+
+    public function getQueriesByExecutions()
+    {
+        return $this->executeQuery(SqlStatistic::QUERIES_BY_EXECUTIONS);
+    }
+
+    public function getQueriesByDiskReads()
+    {
+        return $this->executeQuery(SqlStatistic::QUERIES_BY_DISK_READS);
     }
 
     public function getPlanTableFor($sql)
