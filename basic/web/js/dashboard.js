@@ -34,6 +34,17 @@ $(document).ready(function()
                     { "type": "numeric-comma", targets: 0 }
                 ],
                 "columns":  columns,
+                "oLanguage": {
+                    "sProcessing": '<i class="fa fa-coffee"></i>&nbsp;Подождите...',
+                    "sLengthMenu": "_MENU_ записей",
+                    "sEmptyTable" : "Нет данных",
+                    "sInfo" : "Показано с _START_ по _END_ из _TOTAL_",
+                    "sInfoEmpty" : "Показано 0 записей",
+                    "sInfoFiltered" : "(отфильтровано из _MAX_)",
+                    "sLoadingRecords":"Загрузка...",
+                    "sSearch":"Поиск",
+                    "sZeroRecords":"Подходящих записей не найдено"
+                },
             });
 
             this.table = table;
@@ -63,7 +74,6 @@ $(document).ready(function()
     var userProcedures = new SimpleDataTable({ el: '#user-procedures-table', url: USER_PROCEDURES_URL,
         columns: [
             { "data": "OBJECT_NAME" },
-            { "data": "PROCEDURE_NAME" },
         ]});
 
     var userTriggers = new SimpleDataTable({ el: '#user-triggers-table', url: USER_TRIGGERS_URL,

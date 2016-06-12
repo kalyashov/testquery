@@ -80,8 +80,6 @@ class SiteController extends Controller
         {
             $currentConnection = ConnectionController::getSelectedConnection();
 
-            $qm = QueryManager::getInstance(OracleConnectionManager::getConnection($currentConnection));
-
             return $this->render('tuning',[
                 'curConnection' => $currentConnection,
             ]);
@@ -180,5 +178,17 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionSqlStats()
+    {
+        if (!\Yii::$app->user->isGuest)
+        {
+            $currentConnection = ConnectionController::getSelectedConnection();
+
+            return $this->render('sqlStats',[
+                'curConnection' => $currentConnection,
+            ]);
+        }
     }
 }

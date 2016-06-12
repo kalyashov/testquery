@@ -194,8 +194,8 @@ hr {
     background-color: white;
     border-top: 3px solid #E7EAEC;
     padding: 0;
-    margin: 20px 15px;
-    max-width: 290px;
+    margin: 20px 0px;
+    max-width: 700px;
 }
 
 .section-title {
