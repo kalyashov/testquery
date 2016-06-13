@@ -191,4 +191,16 @@ class SiteController extends Controller
             ]);
         }
     }
+
+    public function actionExecutionPlan()
+    {
+        if (!\Yii::$app->user->isGuest)
+        {
+            $currentConnection = ConnectionController::getSelectedConnection();
+
+            return $this->render('executionPlan',[
+                'curConnection' => $currentConnection,
+            ]);
+        }
+    }
 }

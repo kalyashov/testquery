@@ -13,7 +13,7 @@ use app\components\utils\PlanField;
 use app\components\utils\SqlStatistic;
 use app\components\utils\UserObjects;
 use app\components\utils\UserTables;
-
+use app\components\utils\ExecutionPlan;
 /**
  * Class QueryManager
  * Класс для осуществления запросов к БД
@@ -121,6 +121,49 @@ class QueryManager
     public function getQueriesByDiskReads()
     {
         return $this->executeQuery(SqlStatistic::QUERIES_BY_DISK_READS);
+    }
+
+    public function getExecutionPlan($sql = null, $sql_id = null)
+    {
+        $this->clearPlan();
+
+        $plan['data'] = array();
+        $plan['src'] = array();
+        $needExplain = false;
+
+         // Если есть SQL_ID, то можно получить план запроса по SQL_ID из V$SQL_PLAN
+        if($sql_id)
+        {
+            $plan['data'] = $this->executeQuery(ExecutionPlan::planFromVSQL_PLAN($sql_id));
+            $plan['src'] = ExecutionPlan::VSQLPLAN;
+        }
+        // Иначе попытаемся получить SQL_ID из V$SQL
+        else if($sql)
+        {
+            $sqlIdData = $this->executeQuery(ExecutionPlan::sqlIdByFullText($sql));
+            $sql_id = QueryDataManager::QueryDataToArray($sqlIdData)['data']['0']['SQL_ID'];
+
+            if($sql_id)
+            {
+                $plan['data'] = $this->executeQuery(ExecutionPlan::planFromVSQL_PLAN($sql_id));
+                $plan['src'] = ExecutionPlan::VSQLPLAN;
+            }
+            else
+            {
+                $needExplain = true;
+            }
+        }
+
+        // Если план не был получен из V$SQL, то получим план с помощью команды
+        // EXPLAIN PLAN FOR
+        if($sql && $needExplain)
+        {
+            $this->executeQuery(ExecutionPlan::explainPlanForQuery($sql, $this->sid));
+            $plan['data'] = $this->executeQuery(ExecutionPlan::planFromPlanTable($this->sid));
+            $plan['src'] = ExecutionPlan::EXPLAIN_PLAN_FOR_SRC;
+        }
+
+        return $plan;
     }
 
     public function getPlanTableFor($sql)

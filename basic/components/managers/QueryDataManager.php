@@ -8,7 +8,6 @@
 
 namespace app\components\managers;
 
-
 /**
  * Class DataManager
  * Обрабатывает данные запросов

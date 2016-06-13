@@ -22,9 +22,11 @@ class AppAsset extends AssetBundle
         'plugins/DataTables/datatables.min.css',
         'plugins/bootstrap/css/bootstrap.min.css',
         'plugins/highlight/styles/default.css',
-        'css/main2.css',
+        'css/app.css',
         'css/connection-editor.css',
         'css/tuning-styles.css',
+        'plugins/codemirror/codemirror.css',
+        'plugins/codemirror/show-hint.css',
     ];
     public $js = [
         'js/jquery-2.2.1.min.js',
@@ -35,6 +37,10 @@ class AppAsset extends AssetBundle
         'plugins/backbone/backbone-min.js',
         'plugins/underscore/underscore-min.js',
         'plugins/highlight/highlight.pack.js',
+        'plugins/codemirror/codemirror.js',
+        'plugins/codemirror/mode/sql.js',
+        'plugins/codemirror/show-hint.js',
+        'plugins/codemirror/sql-hint.js',
 
     ];
     public $depends = [

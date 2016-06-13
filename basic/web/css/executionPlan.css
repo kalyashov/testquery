@@ -1,0 +1,22 @@
+#sqlCode
+{
+    width: 70%;
+}
+
+#editorInfo {
+    color: #e3e3e3;
+    cursor: pointer;
+}
+
+#getPlanBtn {
+    background-color: #F7F7F7;
+    border: 1px solid #F7F7F7;
+    border-right: 1px solid #DDDDDD;
+    width: 30px;
+    height: 30px;
+}
+
+#getPlanBtn :hover
+{
+    color: #5bb75b;
+}

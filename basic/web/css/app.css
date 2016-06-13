@@ -190,6 +190,13 @@ hr {
     margin:20px;
 }
 
+.section-full
+{
+    background-color: white;
+    border-top: 3px solid #E7EAEC;
+    padding: 0 15px 10px 15px;
+}
+
 .section-sm {
     background-color: white;
     border-top: 3px solid #E7EAEC;

@@ -48,6 +48,7 @@ AppAsset::register($this);
                                     <li class="active">'.Html::a('<i class="fa fa-tachometer"></i> Главная панель',array('site/index')).'</li>'.
                                     '<li>'.Html::a('<i class="fa fa-wrench"></i> Тюнинг',array('site/tuning')).'</li>'.
                                     '<li>'.Html::a('<i class="fa fa-table" aria-hidden="true"></i> Статистика по SQL-запросам',array('site/sql-stats')).'</li>'.
+                                    '<li>'.Html::a('<i class="fa fa-code" aria-hidden="true"></i> Получить план запроса',array('site/execution-plan')).'</li>'.
                                     '<li>'.Html::a('<i class="fa fa-cog"></i>  Настройки',array('connection/index')).'</li>'.
                                 '</ul>
 

@@ -40,6 +40,23 @@ class QueryController extends Controller
         }
     }
 
+    public function actionExecutionPlan($sql = null, $sql_id = null)
+    {
+        if (!\Yii::$app->user->isGuest)
+        {
+            $currentConnection = ConnectionController::getSelectedConnection();
+
+            $qm = QueryManager::getInstance(OracleConnectionManager::getConnection($currentConnection));
+            $planData = $qm->getExecutionPlan($sql, $sql_id);
+
+            $planFields = QueryDataManager::QueryDataToArray($planData['data']);
+            $plan['data'] = $planFields['data'];
+            $plan['src'] = $planData['src'];
+
+            echo json_encode($plan);
+        }
+    }
+
     public function actionLongrunningqueries()
     {
         if (!\Yii::$app->user->isGuest)
