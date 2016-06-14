@@ -30,6 +30,7 @@ $(document).ready(function()
 
             var table = this.$el.DataTable( {
                 "ajax": url,
+                responsive: true,
                 "columnDefs": [
                     { "type": "numeric-comma", targets: 0 }
                 ],
@@ -37,13 +38,19 @@ $(document).ready(function()
                 "oLanguage": {
                     "sProcessing": '<i class="fa fa-coffee"></i>&nbsp;Подождите...',
                     "sLengthMenu": "_MENU_ записей",
-                    "sEmptyTable" : "Нет данных",
-                    "sInfo" : "Показано с _START_ по _END_ из _TOTAL_",
-                    "sInfoEmpty" : "Показано 0 записей",
-                    "sInfoFiltered" : "(отфильтровано из _MAX_)",
-                    "sLoadingRecords":"Загрузка...",
-                    "sSearch":"Поиск",
-                    "sZeroRecords":"Подходящих записей не найдено"
+                    "sEmptyTable": "Нет данных",
+                    "sInfo": "Показано с _START_ по _END_ из _TOTAL_",
+                    "sInfoEmpty": "Показано 0 записей",
+                    "sInfoFiltered": "(отфильтровано из _MAX_)",
+                    "sLoadingRecords": "Загрузка...",
+                    "sSearch": "Поиск",
+                    "sZeroRecords": "Подходящих записей не найдено",
+                    "oPaginate": {
+                        "sPrevious": "<",
+                        "sNext": ">",
+                        "sFirst": "<<",
+                        "sLast": ">>"
+                    }
                 },
             });
 

@@ -84,4 +84,7 @@ if (YII_ENV_DEV) {
     ];
 }
 
+//TODO изменить
+$config['components']['assetManager']['forceCopy'] = true;
+
 return $config;

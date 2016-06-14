@@ -43,4 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+    <p>Выбор цветовой схемы подстветки кода:</p>
+    <p>agate</p>
+    <p>darcula</p>
+    <p>default</p>
 </div>

@@ -54,7 +54,7 @@
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <h2>Таблицы пользователя  <?php if($curConnection) { echo $curConnection->username; } ?> </h2>
-            <table id="user-tables-table" class="table table-bordered table-responsive table-condensed table-striped" width="100%">
+            <table id="user-tables-table" class="table table-bordered table-responsive table-condensed table-striped table-hover" width="100%">
                 <thead>
                     <tr>
                         <td>TABLE_NAME</td>
@@ -74,7 +74,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h2>Представления пользователя  <?php if($curConnection) { echo $curConnection->username; } ?> </h2>
-                <table id="user-views-table" class="table table-bordered table-responsive table-striped" width="100%">
+                <table id="user-views-table" class="table table-bordered table-responsive table-striped table-hover" width="100%">
                     <thead>
                     <tr>
                         <td>VIEW_NAME</td>
@@ -88,7 +88,7 @@
 
             <div class="col-md-6">
                 <h2>Процедуры пользователя  <?php if($curConnection) { echo $curConnection->username; } ?> </h2>
-                <table id="user-procedures-table" class="table table-bordered table-responsive table-striped" width="100%">
+                <table id="user-procedures-table" class="table table-bordered table-responsive table-striped table-hover" width="100%">
                     <thead>
                     <tr>
                         <td>OBJECT_NAME</td>
@@ -103,9 +103,9 @@
 
 <div class="section user-triggers-panel">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <h2>Триггеры пользователя  <?php if($curConnection) { echo $curConnection->username; } ?> </h2>
-            <table id="user-triggers-table" class="table table-bordered table-responsive table-striped" width="100%">
+            <table id="user-triggers-table" class="table table-bordered table-responsive table-striped table-hover" width="100%">
                 <thead>
                     <tr>
                         <td>TRIGGER_NAME</td>

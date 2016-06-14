@@ -19,18 +19,26 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $css = [
-        'plugins/DataTables/datatables.min.css',
         'plugins/bootstrap/css/bootstrap.min.css',
-        'plugins/highlight/styles/default.css',
-        'css/app.css',
+        'plugins/highlight/styles/agate.css',
+        'css/app-st.css',
         'css/connection-editor.css',
         'css/tuning-styles.css',
         'plugins/codemirror/codemirror.css',
         'plugins/codemirror/show-hint.css',
+        'plugins/DataTables/DataTables-1.10.11/css/dataTables.bootstrap.min.css',
+        //'plugins/DataTables/Responsive-2.0.2/css/responsive.datatables.min.css',
+        'plugins/DataTables/Responsive-2.0.2/css/responsive.bootstrap.min.css',
+        //'plugins/DataTables/Buttons-1.1.2/css/buttons.bootstrap.min.css',
+        'plugins/DataTables/Buttons-1.1.2/css/buttons.dataTables.min.css',
     ];
     public $js = [
         'js/jquery-2.2.1.min.js',
         'plugins/DataTables/datatables.min.js',
+        'plugins/DataTables/DataTables-1.10.11/js/dataTables.bootstrap.min.js',
+        'plugins/DataTables/DataTables-1.10.11/js/jquery.dataTables.min.js',
+        //'plugins/DataTables/Buttons-1.1.2/js/buttons.bootstrap.min.js',
+        'plugins/DataTables/Buttons-1.1.2/js/dataTables.buttons.min.js',
         'plugins/bootstrap/js/bootstrap.min.js',
         'js/tuning-script.js',
         'plugins/chartJs/Chart.js',

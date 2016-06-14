@@ -30,6 +30,7 @@ $(document).ready(function()
 
             var table = this.$el.DataTable( {
                 "ajax": SQL_BY_ELAPSED_TIME_URL,
+                responsive: true,
                 "aoColumnDefs": [
                     { 'bSortable': false }
                 ],
@@ -84,7 +85,13 @@ $(document).ready(function()
                     "sInfoFiltered" : "(отфильтровано из _MAX_)",
                     "sLoadingRecords":"Загрузка...",
                     "sSearch":"Поиск",
-                    "sZeroRecords":"Подходящих записей не найдено"
+                    "sZeroRecords":"Подходящих записей не найдено",
+                    "oPaginate": {
+                        "sPrevious": "<",
+                        "sNext": ">",
+                        "sFirst": "<<",
+                        "sLast": ">>"
+                    }
                 },
             });
 
@@ -94,11 +101,17 @@ $(document).ready(function()
         {
             var curRow = this.table.row(e.currentTarget).data();
 
-             $('#queryInfoModal').modal('show');
-             $('#queryInfoModal .modal-body #sqlText .sql').text(curRow.SQL_FULLTEXT);
+            $('#queryInfoModal').modal('show');
+
+            var $sqlText = $('#queryInfoModal .modal-body #sqlText .sql');
+            $sqlText.text(curRow.SQL_FULLTEXT);
+
+            // подстветка синтаксиса
+            $sqlText.each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
 
             sqlPlanTable.reload(curRow.SQL_ID);
-             //new PlanTable({el: '#sqlPlanTable', query: curRow.SQL_FULLTEXT});
         }
     });
 
@@ -119,6 +132,7 @@ $(document).ready(function()
 
             var table = this.$el.DataTable( {
                 "ajax": SQL_BY_CPU_TIME_URL,
+                responsive: true,
                 "columnDefs": [
                     { "type": "numeric-comma", targets: 0 }
                 ],
@@ -173,7 +187,13 @@ $(document).ready(function()
                     "sInfoFiltered" : "(отфильтровано из _MAX_)",
                     "sLoadingRecords":"Загрузка...",
                     "sSearch":"Поиск",
-                    "sZeroRecords":"Подходящих записей не найдено"
+                    "sZeroRecords":"Подходящих записей не найдено",
+                    "oPaginate": {
+                        "sPrevious": "<",
+                        "sNext": ">",
+                        "sFirst": "<<",
+                        "sLast": ">>"
+                    }
                 },
             });
 
@@ -184,7 +204,14 @@ $(document).ready(function()
             var curRow = this.table.row(e.currentTarget).data();
 
             $('#queryInfoModal').modal('show');
-            $('#queryInfoModal .modal-body #sqlText .sql').text(curRow.SQL_FULLTEXT);
+
+            var $sqlText = $('#queryInfoModal .modal-body #sqlText .sql');
+            $sqlText.text(curRow.SQL_FULLTEXT);
+
+            // подстветка синтаксиса
+            $sqlText.each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
 
             sqlPlanTable.reload(curRow.SQL_ID);
         }
@@ -207,6 +234,7 @@ $(document).ready(function()
 
             var table = this.$el.DataTable( {
                 "ajax": SQL_BY_BUFFER_GETS_URL,
+                responsive: true,
                 "columnDefs": [
                     { "type": "numeric-comma", targets: 0 }
                 ],
@@ -274,7 +302,14 @@ $(document).ready(function()
             var curRow = this.table.row(e.currentTarget).data();
 
             $('#queryInfoModal').modal('show');
-            $('#queryInfoModal .modal-body #sqlText .sql').text(curRow.SQL_FULLTEXT);
+
+            var $sqlText = $('#queryInfoModal .modal-body #sqlText .sql');
+            $sqlText.text(curRow.SQL_FULLTEXT);
+
+            // подстветка синтаксиса
+            $sqlText.each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
 
             sqlPlanTable.reload(curRow.SQL_ID);
         }
@@ -297,6 +332,7 @@ $(document).ready(function()
 
             var table = this.$el.DataTable( {
                 "ajax": SQL_BY_DISK_READS_URL,
+                responsive: true,
                 "columnDefs": [
                     { "type": "numeric-comma", targets: 0 }
                 ],
@@ -363,7 +399,14 @@ $(document).ready(function()
             var curRow = this.table.row(e.currentTarget).data();
 
             $('#queryInfoModal').modal('show');
-            $('#queryInfoModal .modal-body #sqlText .sql').text(curRow.SQL_FULLTEXT);
+
+            var $sqlText = $('#queryInfoModal .modal-body #sqlText .sql');
+            $sqlText.text(curRow.SQL_FULLTEXT);
+
+            // подстветка синтаксиса
+            $sqlText.each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
 
             sqlPlanTable.reload(curRow.SQL_ID);
         }
@@ -386,6 +429,7 @@ $(document).ready(function()
 
             var table = this.$el.DataTable( {
                 "ajax": SQL_BY_EXECUTIONS_URL,
+                responsive: true,
                 "columnDefs": [
                     { "type": "numeric-comma", targets: 0 }
                 ],
@@ -453,7 +497,14 @@ $(document).ready(function()
             var curRow = this.table.row(e.currentTarget).data();
 
             $('#queryInfoModal').modal('show');
-            $('#queryInfoModal .modal-body #sqlText .sql').text(curRow.SQL_FULLTEXT);
+
+            var $sqlText = $('#queryInfoModal .modal-body #sqlText .sql');
+            $sqlText.text(curRow.SQL_FULLTEXT);
+
+            // подстветка синтаксиса
+            $sqlText.each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
 
             sqlPlanTable.reload(curRow.SQL_ID);
         }
@@ -476,6 +527,7 @@ $(document).ready(function()
 
             var table = this.$el.DataTable( {
                 "ajax": SQL_BY_PARSE_CALLS_URL,
+                responsive: true,
                 "columnDefs": [
                     { "type": "numeric-comma", targets: 0 }
                 ],
@@ -534,7 +586,14 @@ $(document).ready(function()
             var curRow = this.table.row(e.currentTarget).data();
 
             $('#queryInfoModal').modal('show');
-            $('#queryInfoModal .modal-body #sqlText .sql').text(curRow.SQL_FULLTEXT);
+
+            var $sqlText = $('#queryInfoModal .modal-body #sqlText .sql');
+            $sqlText.text(curRow.SQL_FULLTEXT);
+
+            // подстветка синтаксиса
+            $sqlText.each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
 
             sqlPlanTable.reload(curRow.SQL_ID);
         }
@@ -561,6 +620,7 @@ $(document).ready(function()
 
             $.ajax({
                 url: this.url + criteria,
+                responsive: true,
                 success: function (data)
                 {
                     planData = JSON.parse(data);
@@ -581,12 +641,12 @@ $(document).ready(function()
                                 "sLoadingRecords": "Загрузка...",
                                 "sSearch": "Поиск",
                                 "sZeroRecords": "Подходящих записей не найдено",
-                                "oPaginate": {
-                                "sPrevious": "Предыдущая",
-                                    "sNext": "Следующая",
-                                    "sFirst": "Первая",
-                                    "sLast": "Последняя"
-                                }
+                                    "oPaginate": {
+                                        "sPrevious": "<",
+                                        "sNext": ">",
+                                        "sFirst": "<<",
+                                        "sLast": ">>"
+                                    }
                             },
                         });
 
@@ -620,6 +680,7 @@ $(document).ready(function()
 
                                 counter++;
                             },
+                            "pagingType": "simple",
                             "oLanguage": {
                                 "sProcessing": '<i class="fa fa-coffee"></i>&nbsp;Подождите...',
                                 "sLengthMenu": "_MENU_ записей",
@@ -631,10 +692,10 @@ $(document).ready(function()
                                 "sSearch": "Поиск",
                                 "sZeroRecords": "Подходящих записей не найдено",
                                 "oPaginate": {
-                                    "sPrevious": "Предыдущая",
-                                    "sNext": "Следующая",
-                                    "sFirst": "Первая",
-                                    "sLast": "Последняя"
+                                    "sPrevious": "<",
+                                    "sNext": ">",
+                                    "sFirst": "<<",
+                                    "sLast": ">>"
                                 }
                             },
                         });
@@ -673,4 +734,9 @@ $(document).ready(function()
     new SqlByExecutions();
     new SqlByParseCalls();
 
+
+    // enable code highlight
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
 });

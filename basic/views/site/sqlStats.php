@@ -11,7 +11,7 @@ $this->title = Yii::t('app', 'Статистика по SQL-запросам');
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerCssFile('/testquery/basic/web/css/executionPlan.css');
-$this->registerJsFile('/testquery/basic/web/js/sqlStatistic.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile('/testquery/basic/web/js/sqlStats2.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerCssFile('/testquery/basic/web/css/sqlStats.css');
 
 ?>
@@ -20,12 +20,13 @@ $this->registerCssFile('/testquery/basic/web/css/sqlStats.css');
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]) ?>
 
-<div class="section">
+
+<div class="section-table">
     <h2>SQL ORDERED BY ELAPSED_TIME</h2>
     <table id="sqlByElapsedTime" class="table table-hover" cellspacing="0" width="100%">
         <thead>
         <tr>
-            <th>ELAPSED_TIME</th>
+            <th>ELAPSED_TIME (sec)</th>
             <th>EXECUTIONS</th>
             <th>CPU TIME</th>
             <th>DISK_READS</th>
@@ -37,7 +38,7 @@ $this->registerCssFile('/testquery/basic/web/css/sqlStats.css');
     </table>
 </div>
 
-<div class="section">
+<div class="section-table">
     <h2>SQL ORDERED BY CPU_TIME</h2>
     <table id="sqlByCpuTime" class="table table-hover" cellspacing="0" width="100%">
         <thead>
@@ -54,7 +55,7 @@ $this->registerCssFile('/testquery/basic/web/css/sqlStats.css');
     </table>
 </div>
 
-<div class="section">
+<div class="section-table">
     <h2>SQL ORDERED BY BUFFER_GETS</h2>
     <table id="sqlByBufferGets" class="table table-hover" cellspacing="0" width="100%">
         <thead>
@@ -72,7 +73,7 @@ $this->registerCssFile('/testquery/basic/web/css/sqlStats.css');
     </table>
 </div>
 
-<div class="section">
+<div class="section-table">
     <h2>SQL ORDERED BY DISK_READS</h2>
     <table id="sqlByDiskReads" class="table table-hover" cellspacing="0" width="100%">
         <thead>
@@ -89,7 +90,7 @@ $this->registerCssFile('/testquery/basic/web/css/sqlStats.css');
     </table>
 </div>
 
-<div class="section">
+<div class="section-table">
     <h2>SQL ORDERED BY EXECUTIONS</h2>
     <table id="sqlByExecutions" class="table table-hover" cellspacing="0" width="100%">
         <thead>
@@ -107,7 +108,7 @@ $this->registerCssFile('/testquery/basic/web/css/sqlStats.css');
     </table>
 </div>
 
-<div class="section">
+<div class="section-table">
     <h2>SQL ORDERED BY PARSE_CALLS</h2>
     <table id="sqlByParseCalls" class="table table-hover" cellspacing="0" width="100%">
         <thead>
@@ -139,7 +140,7 @@ $this->registerCssFile('/testquery/basic/web/css/sqlStats.css');
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane  in active" id="sqlText">
-                            <pre>
+                            <pre id="preCode">
                                 <code class="sql hljs">
                                     Информация недоступна!
                                 </code>

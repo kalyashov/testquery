@@ -188,6 +188,7 @@ hr {
     border-top: 3px solid #E7EAEC;
     padding: 0;
     margin:20px;
+    padding-bottom: 20px;
 }
 
 .section-full
@@ -195,6 +196,14 @@ hr {
     background-color: white;
     border-top: 3px solid #E7EAEC;
     padding: 0 15px 10px 15px;
+}
+
+.section-table
+{
+    background-color: white;
+    border-top: 3px solid #E7EAEC;
+    padding: 0 15px 10px 15px;
+    margin-bottom: 20px;
 }
 
 .section-sm {
@@ -212,8 +221,49 @@ hr {
     border-bottom: 1px solid #E7EAEC;
 }
 
-/* bootstrap overrides */
 
+.site-landing {
+    margin: 20px;
+    padding: 20px;
+
+}
+
+.landing {
+    background-color: white !important;
+}
+
+.landing-info {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.land-btn
+{
+    margin: 0 auto;
+}
+
+.site-login
+{
+    margin: 20px;
+}
+
+.paginate_button
+{
+    background-color: #e3e3e3;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.dataTables_info
+{
+    padding: 10px 0;
+}
+
+/* bootstrap overrides */
 .row{
     padding: 0;
     margin: 0;
@@ -325,6 +375,18 @@ hr {
 .text-right {
     text-align: right;
 }
+
+pre {
+    margin: 0px !important;
+    padding: 0px !important;
+    border: 0px;
+}
+
+#preCode
+{
+    background-color: #333!important;
+}
+
 
 /* adjust the contents on smaller devices */
 @media (max-width: 768px) {

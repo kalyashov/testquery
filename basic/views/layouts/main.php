@@ -46,7 +46,6 @@ AppAsset::register($this);
                                 </ul>
                                 <ul class="nav hidden-xs" id="lg-menu">
                                     <li class="active">'.Html::a('<i class="fa fa-tachometer"></i> Главная панель',array('site/index')).'</li>'.
-                                    '<li>'.Html::a('<i class="fa fa-wrench"></i> Тюнинг',array('site/tuning')).'</li>'.
                                     '<li>'.Html::a('<i class="fa fa-table" aria-hidden="true"></i> Статистика по SQL-запросам',array('site/sql-stats')).'</li>'.
                                     '<li>'.Html::a('<i class="fa fa-code" aria-hidden="true"></i> Получить план запроса',array('site/execution-plan')).'</li>'.
                                     '<li>'.Html::a('<i class="fa fa-cog"></i>  Настройки',array('connection/index')).'</li>'.
@@ -55,7 +54,8 @@ AppAsset::register($this);
                                 <!-- tiny only nav-->
                                 <ul class="nav visible-xs" id="xs-menu">
                                     <li><a href="#stories" class="text-center"><i class="fa fa-tachometer"></i></a></li>
-                                    <li><a href="#" class="text-center"><i class="fa fa-wrench"></i></a></li>
+                                    <li><a href="#" class="text-center"><i class="fa fa-table" aria-hidden="true"></i></a></li>
+                                    <li><a href="#" class="text-center"><i class="fa fa-code" aria-hidden="true"></i></a></li>
                                     <li><a href="#" class="text-center"><i class="fa fa-cog"></i></a></li>
                                 </ul>
                             </div>
@@ -66,8 +66,23 @@ AppAsset::register($this);
 
                     }
 
+                    // TODO
+                    $userLog = '';
+                    $templateWidth = '';
+                    if(Yii::$app->user->isGuest)
+                    {
+                        $userLog = '<li>'. Html::a('Войти',array('site/login')). '</li>';
+                        $templateWidth = 'col-sm-12 col-xs-12 landing';
+                    }
+                    else
+                    {
+
+                        $userLog = '<li>'. Html::a('Профиль',array('site/profile')). '</li>'.'<li>'. Html::a('Выйти',array('site/logout')). '</li>';
+                        $templateWidth = 'col-sm-10 col-xs-11';
+                    }
+
                     echo '<!-- main right col -->
-                        <div class="column col-sm-10 col-xs-11" id="main">
+                        <div class="column '.$templateWidth.'" id="main">
 
                             <!-- top nav -->
                             <div class="navbar navbar-blue navbar-static-top">
@@ -84,21 +99,20 @@ AppAsset::register($this);
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
-                                            <ul class="dropdown-menu">
-
-                                                <li><a href="">Профиль</a></li>
-                                                <li><a href="">Выйти</a></li>
-                                            </ul>
+                                            <ul class="dropdown-menu">'
+                                                . $userLog .
+                                            '</ul>
                                         </li>
                                     </ul>
                                 </nav>
                             </div>
                             <!-- /top nav -->
 
-                        <div class="padding">
-                            <div class="full col-sm-9">'.
-                            $content.
-                            '</div>
+                            <div class="padding">
+                                <div class="full col-sm-9">'.
+                                $content.
+                                '</div>
+                            </div>
                         </div>';
                 ?>
 
@@ -110,5 +124,6 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
 </body>
 </html>
+
 <?php $this->endPage() ?>
 
